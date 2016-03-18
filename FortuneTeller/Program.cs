@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
+using System.Reflection; //required in order for our 'Restart' method to work
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,10 +67,13 @@ namespace FortuneTeller
                 //PART TWO
                 //Retirement
                 int retirement = 0;
+
+                //check if age is odd and assign retirement to 1 year
                 if (ageNum % 2 != 0)
                 {
                     retirement = 1;
                 }
+                //check if age is an even number and assign retirement to 400 years :(
                 else if (ageNum % 2 == 0)
                 {
                     retirement = 400;
@@ -128,10 +131,13 @@ namespace FortuneTeller
                 }
 
                 //Money in da Bank 
-                string firstLetter = birthMonth[0].ToString();
-                string secondLetter = birthMonth[1].ToString();
-                string thirdLetter = birthMonth[2].ToString();
+                string firstLetter = birthMonth[0].ToString(); //get first letter of user's birth month 
+                string secondLetter = birthMonth[1].ToString(); //get second letter of user's birth month
+                string thirdLetter = birthMonth[2].ToString(); //get third letter of user's birth month
                 string moneyInBank = "";
+
+                //checks if user's first or last name contains the first, second, or third letter of their birth month
+                //then assigns a money in bank amount based on whether name contains the specified letter or not
                 if (firstName.ToUpper().IndexOf(firstLetter) != -1 || lastName.ToUpper().IndexOf(firstLetter) != -1)
                 {
                     moneyInBank = "$100";
@@ -151,33 +157,38 @@ namespace FortuneTeller
 
                 //PART THREE 
 
-                //Fortune
+                //Tell user their fortune
                 Console.WriteLine("\a\a\a" + firstName + " " + lastName + " will retire in " + retirement + " year(s) with " + moneyInBank + " in the bank, a vacation home" + location + ", and your mode of transportation will be" + transportation + ".");
 
+                //Ask user if they want to play again
                 Console.WriteLine("Want to play again? (y/n)");
                 playAgain = Console.ReadLine().ToUpper();
                 Quit(playAgain);
             }
+            //Restart game if they signify they want to play again 
             while (playAgain == "Y");
         }
+
+        //Method for quitting the currently running Fortune Teller game
         static void Quit(string userReply)
         {
             userReply = userReply.ToUpper();
             if (userReply == "QUIT")
             {
                 Console.WriteLine("Nobody likes a quitter...");
-                Environment.Exit(0);
+                Environment.Exit(0); //Exits the program
             }
         }
 
+        //Method for restarting the Fortune Teller game
         static void Restart(string userReply)
         {
             userReply = userReply.ToUpper();
             if (userReply == "RESTART")
             {
-                var fileName = Assembly.GetExecutingAssembly().Location;
-                System.Diagnostics.Process.Start(fileName);
-                Environment.Exit(0);
+                var fileName = Assembly.GetExecutingAssembly().Location; //gets location of the document where the fortune telling game exists and saves it in a variable
+                System.Diagnostics.Process.Start(fileName); //starts new fortune telling game 
+                Environment.Exit(0); //exits the current fortune telling game (new game starts in a new window)
             }
 
         }
