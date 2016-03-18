@@ -19,19 +19,32 @@ namespace FortuneTeller
                 Console.WriteLine("Greetings user, and welcome to Katherine and Scott's \"tell-all-ball\" of mystical fortunes!");
                 Console.WriteLine("(You can quit at any time by typing \"Quit\", and can restart at any time by typing \"Restart\".)");
                 Console.WriteLine("Please enter your first name:");
-                string firstName = Console.ReadLine();
+                var firstName = Console.ReadLine();
                 Quit(firstName);
                 Restart(firstName);
-                char firstNameLetter = char.ToUpper(firstName[0]);
                 Console.WriteLine("Ah yes, " + firstName + ". Now please enter your last name my child:");
                 string lastName = Console.ReadLine();
                 Quit(lastName);
                 Restart(lastName);
-                Console.WriteLine("Please enter your current age:");
-                string age = Console.ReadLine();
-                Quit(age);
-                Restart(age);
-                int ageNum = int.Parse(age);
+
+                int ageNum = 0;
+                //ensure user enters a valid number (not a string)
+                do
+                {
+                    try
+                    {
+                        Console.WriteLine("Please enter your current age:");
+                        string age = Console.ReadLine();
+                        Quit(age);
+                        Restart(age);
+                        ageNum = int.Parse(age);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("That is not a valid number!");
+                    }
+                }
+                while (ageNum == 0);
                 Console.WriteLine("In which month were you born?");
                 string birthMonth = Console.ReadLine().ToUpper();
                 Quit(birthMonth);
@@ -57,12 +70,23 @@ namespace FortuneTeller
                     }
                     while (favoriteColor == "HELP");
                 }
-
-                Console.WriteLine("How many siblings do you have?");
-                string siblings = Console.ReadLine();
-                Quit(siblings);
-                Restart(siblings);
-                int siblingNum = int.Parse(siblings);
+                int siblingNum = 0;
+                do
+                {
+                    try
+                    {
+                        Console.WriteLine("How many siblings do you have?");
+                        string siblings = Console.ReadLine();
+                        Quit(siblings);
+                        Restart(siblings);
+                        siblingNum = int.Parse(siblings);
+                    }
+                    catch(FormatException)
+                    {
+                        Console.WriteLine("That is not a valid number!");
+                    }
+                }
+                while (siblingNum == 0);
 
                 //PART TWO
                 //Retirement
