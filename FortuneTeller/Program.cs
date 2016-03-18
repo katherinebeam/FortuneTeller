@@ -70,7 +70,8 @@ namespace FortuneTeller
                     }
                     while (favoriteColor == "HELP");
                 }
-                int siblingNum = 0;
+
+                int siblingNum = -1;
                 do
                 {
                     try
@@ -86,7 +87,7 @@ namespace FortuneTeller
                         Console.WriteLine("That is not a valid number!");
                     }
                 }
-                while (siblingNum == 0);
+                while (siblingNum == -1 || siblingNum < 0);
 
                 //PART TWO
                 //Retirement
