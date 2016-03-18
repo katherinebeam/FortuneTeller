@@ -12,11 +12,12 @@ namespace FortuneTeller
         static void Main(string[] args)
         {
             //PART ONE
-            Console.WriteLine("Greetings user, and welcome to Katherine and Scott's \"tell-all-ball\" of mystical fortunes!");
             string playAgain = "";
 
             do
             {
+                Console.WriteLine("Greetings user, and welcome to Katherine and Scott's \"tell-all-ball\" of mystical fortunes!");
+                Console.WriteLine("(You can quit at any time by typing \"Quit\", and can restart at any time by typing \"Restart\".)");
                 Console.WriteLine("Please enter your first name:");
                 string firstName = Console.ReadLine();
                 Quit(firstName);
@@ -147,13 +148,11 @@ namespace FortuneTeller
                 {
                     moneyInBank = "$3";
                 }
-                Console.WriteLine(firstName.IndexOf(secondLetter));
-
 
                 //PART THREE 
 
                 //Fortune
-                Console.WriteLine(firstName + " " + lastName + " will retire in " + retirement + " year(s) with " + moneyInBank + " in the bank, a vacation home" + location + ", and your mode of transportation will be" + transportation + ".");
+                Console.WriteLine("\a\a\a" + firstName + " " + lastName + " will retire in " + retirement + " year(s) with " + moneyInBank + " in the bank, a vacation home" + location + ", and your mode of transportation will be" + transportation + ".");
 
                 Console.WriteLine("Want to play again? (y/n)");
                 playAgain = Console.ReadLine().ToUpper();
@@ -173,7 +172,8 @@ namespace FortuneTeller
 
         static void Restart(string userReply)
         {
-            if (userReply == "Restart")
+            userReply = userReply.ToUpper();
+            if (userReply == "RESTART")
             {
                 var fileName = Assembly.GetExecutingAssembly().Location;
                 System.Diagnostics.Process.Start(fileName);
